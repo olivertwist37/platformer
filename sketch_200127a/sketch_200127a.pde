@@ -1,12 +1,12 @@
 
 import fisica.*;
-
+//----------------------------------------------------------------------
 int[] scores = new int[5];
 int score;
 
 int[] scores2 = new int[5];
 int score2;
-
+//--------------------------------------------------------------------------
 boolean wKey, aKey, sKey, dKey;
 PImage map;
 PImage map2;
@@ -57,7 +57,7 @@ void setup() {
   //}else if(run==1&&mode==1){
 
   //}
-
+//------------------------------------------------
   for (int i=0; i<scores.length; i++) {
     scores[i] = 1000;
   }
@@ -65,6 +65,7 @@ void setup() {
   for (int i=0; i<scores2.length; i++) {
     scores2[i] = 1000;
   }
+  //-----------------------------------------------
 }
 
 void draw() {
@@ -129,10 +130,12 @@ void draw() {
       if (run==0) {
         score=timer;
         addNewScore(score);
+        mode=2;
       }
       if (run==1) {
         score2=timer;
         addNewScore(score2);
+        mode=2;
       }
       }
       if (c.contains("death")){

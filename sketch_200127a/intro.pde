@@ -6,7 +6,7 @@ void intro(){
   background (200,200,255);
   fill(800,140,100);
   textSize(40);
-  text("speedrun",500,200);
+ // text("speedrun",400,200);
   
 
  for (int i=0; i<scores.length; i++) {
@@ -54,6 +54,10 @@ character();
  character();
   }
   
-  
-  
+  if (mode==2){
+  mode=0;
+  timer=0;
+  winner=false;
+  setup();
+  }
 }

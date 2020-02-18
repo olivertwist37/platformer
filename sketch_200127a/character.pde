@@ -4,7 +4,7 @@ void character() {
 
   character.setDensity(1);
   character.setFriction(0);
-  character.setRestitution(0);
+  character.setRestitution(0.01);
   character.setFill(200);
   world.add(character);
   character.setStatic(false);
