@@ -28,12 +28,13 @@ void loadWorld() {
         world.add(b);
       }
       if (c==green) {
-            FBox b = new FBox(size, size);
+        FBox b = new FBox(size, size);
         b.setName("death");
         b.setFillColor(green);
         b.setPosition(x*size, y*size);
         b.setFriction(1);
         b.setStaticBody(true);
+        b.setStrokeWeight(0);
         world.add(b);
       }
       if (c==blue) {
@@ -80,12 +81,13 @@ void loadWorld() {
         world.add(b);
       }
       if (c==green) {
-          FBox b = new FBox(size, size);
+        FBox b = new FBox(size, size);
         b.setName("death");
         b.setFillColor(green);
         b.setPosition(x*size, y*size);
         b.setFriction(1);
         b.setStaticBody(true);
+        b.setStrokeWeight(0);
         world.add(b);
       }
       if (c==blue) {

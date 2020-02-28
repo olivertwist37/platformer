@@ -6,6 +6,11 @@ int score;
 
 int[] scores2 = new int[5];
 int score2;
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= 
+String[] sScores;
+String[] sScores2;
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= 
 //--------------------------------------------------------------------------
 boolean wKey, aKey, sKey, dKey;
 PImage map;
@@ -41,10 +46,11 @@ FBox character;
 float vx=0, vy=0;
 FWorld world;
 void setup() {
+
   timer=0;
   size(1200, 800);
   Fisica.init(this);
-  world = new FWorld(0, 0, 10000, 2500);
+  world = new FWorld(-300, -300, 10000, 2500);
   world.setGravity(0, 1100);
 
   map = loadImage ("map.png");
@@ -57,31 +63,46 @@ void setup() {
   //}else if(run==1&&mode==1){
 
   //}
-//------------------------------------------------
-  for (int i=0; i<scores.length; i++) {
-    scores[i] = 1000;
-  }
 
-  for (int i=0; i<scores2.length; i++) {
-    scores2[i] = 1000;
+
+
+  //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= 
+  sScores = loadStrings("list.txt");
+  sScores2 =loadStrings("list2.txt");
+  //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=  
+  String[] sScores = loadStrings("list.txt");
+  for (int i = 0; i < sScores.length; i++) {
+    scores[i]= Integer.parseInt(sScores[i]);
   }
+  String[] sScores2 = loadStrings("list2.txt");
+  for (int i = 0; i < sScores2.length; i++) {
+    scores2[i]= Integer.parseInt(sScores2[i]);
+  }
+  //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= 
+  //------------------------------------------------
+  //for (int i=0; i<scores.length; i++) {
+  //  scores[i] = 1000;
+  //}
+
+  //for (int i=0; i<scores2.length; i++) {
+  //  scores2[i] = 1000;
+  //}
   //-----------------------------------------------
 }
 
 void draw() {
+
   if (mode==0) {
     intro();
-  }
- else if (mode ==3) {
+  } else if (mode ==3) {
     leaderboards();
-  }
- else if (mode==1) {
+  } else if (mode==1) {
 
     if (!winner) {
       timer++;
       t=timer/60;
-    }else if (mode==2){
-     death(); 
+    } else if (mode==2) {
+      death();
     }
 
 
@@ -125,21 +146,26 @@ void draw() {
     //jumping
     ArrayList<FContact> contacts = character.getContacts();
     for (FContact c : contacts) {
-      if (c.contains("win")){
+      if (c.contains("win")) {
         winner = true;
-      if (run==0) {
-        score=timer;
-        addNewScore(score);
-        mode=2;
+        if (run==0) {
+          score=t;
+          addNewScore();
+          mode=2;
+          println("00000000000000000000000000000000000000");
+          break;
+        }
+
+        if (run==1) {
+          println("11111111111111111111111111111111111");
+          score2=t;
+          addNewScore();
+          mode=2;
+          break;
+        }
       }
-      if (run==1) {
-        score2=timer;
-        addNewScore(score2);
-        mode=2;
-      }
-      }
-      if (c.contains("death")){
-       mode = 2;
+      if (c.contains("death")) {
+        mode = 2;
       }
     }
     if (wKey && contacts.size()>0 && character.getVelocityY()==0) character.setVelocity(character.getVelocityX(), -700);

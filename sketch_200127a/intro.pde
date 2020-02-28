@@ -40,14 +40,14 @@ image(map,300,575);
 }
 void mouseReleased(){
   
-   if (dist(mouseX,mouseY,220,600)<100){
+   if (dist(mouseX,mouseY,220,600)<100&&mode==0){
 run=0;
 mode=1;
 loadWorld();
 character();
   }
   
-   if (dist(mouseX,mouseY,650,600)<100){
+   if (dist(mouseX,mouseY,650,600)<100&&mode==0){
  run=1;
  mode=1;
  loadWorld();
@@ -58,6 +58,6 @@ character();
   mode=0;
   timer=0;
   winner=false;
-  setup();
+  Reset();
   }
 }
